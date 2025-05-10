@@ -56,6 +56,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %py3_install
 
+%{__rm} -r $RPM_BUILD_ROOT%{py3_sitedir}/%{module}/tests
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -63,23 +65,18 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc CHANGES.txt CREDITS.txt LICENSE.txt README.rst
 %dir %{py3_sitedir}/%{module}
+%attr(755,root,root) %{py3_sitedir}/%{module}/*.so
+%{py3_sitedir}/%{module}/_geos.pxd
+%{py3_sitedir}/%{module}/_pygeos_api.pxd
 %{py3_sitedir}/%{module}/__pycache__
 %{py3_sitedir}/%{module}/*.py
 %dir %{py3_sitedir}/%{module}/algorithms
 %{py3_sitedir}/%{module}/algorithms/__pycache__
 %{py3_sitedir}/%{module}/algorithms/*.py
-%dir %{py3_sitedir}/%{module}/examples
-%{py3_sitedir}/%{module}/examples/__pycache__
-%{py3_sitedir}/%{module}/examples/*.py
 %dir %{py3_sitedir}/%{module}/geometry
 %{py3_sitedir}/%{module}/geometry/__pycache__
 %{py3_sitedir}/%{module}/geometry/*.py
-%dir %{py3_sitedir}/%{module}/speedups
-%{py3_sitedir}/%{module}/speedups/__pycache__
-%attr(755,root,root) %{py3_sitedir}/%{module}/speedups/*.so
-%{py3_sitedir}/%{module}/speedups/*.py
 %dir %{py3_sitedir}/%{module}/vectorized
 %{py3_sitedir}/%{module}/vectorized/__pycache__
-%attr(755,root,root) %{py3_sitedir}/%{module}/vectorized/*.so
 %{py3_sitedir}/%{module}/vectorized/*.py
-%{py3_sitedir}/Shapely-*.egg-info
+%{py3_sitedir}/shapely-*.egg-info
